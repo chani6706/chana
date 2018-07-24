@@ -6,34 +6,30 @@
         function getReq() {
             fetch("https://restcountries.eu/rest/v2/all?fields=name")
                 .then(res => res.json())
-                .then(content => {return content})
-                .then((content) =>{index=Math.floor(Math.random() *250);
+                .then(content => { return content })
+                .then((content) => {
+                    index = Math.floor(Math.random() * 250);
                     getNewRequest(content[index].name)
                 });
         }
         function getNewRequest(country) {
-           fetch(`https://restcountries.eu/rest/v2/name/${country}`)
+            fetch(`https://restcountries.eu/rest/v2/name/${country}`)
                 .then(res => res.json())
-              .then(content => {displayUi(content[0])} );
-     };
-     function displayUi(country)
-     {
-         console.log(country);
-         document.getElementById("countryName").innerHTML=country.name;
-         document.getElementById("area").innerHTML="area: "+country.area;
-        
-     }
+                .then(content => { displayUi(content[0]) });
+        };
+        function displayUi(country) {
+            document.getElementById("countryName").innerHTML = country.name;
+            document.getElementById("area").innerHTML = "area: " + country.area;
 
-       
-        
+        }
     </script>
 </head>
 
 <body>
     <button onclick="getReq()">click me</button>
     <div>
-    <h1 id="countryName"></h1>
-    <p id="area"></p>
+        <h1 id="countryName"></h1>
+        <p id="area"></p>
     </div>
 
 </body>
